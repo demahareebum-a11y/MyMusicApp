@@ -3,8 +3,11 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Search } from "lucide-react";
-import { tracks, categories } from "@/lib/data";
+import { tracks as builtinTracks, categories } from "@/lib/data";
+import { mySongs } from "@/lib/myMusic";
 import TrackRow from "@/components/TrackRow";
+
+const tracks = [...mySongs, ...builtinTracks];
 
 export default function SearchPage() {
   const [query, setQuery] = useState("");

@@ -1,8 +1,10 @@
 "use client";
 
-import { Play, Pause } from "lucide-react";
+import { Play, Pause, Trash2 } from "lucide-react";
 import { Playlist } from "@/lib/data";
 import { usePlayerStore } from "@/lib/store";
+import { usePlaylistStore } from "@/lib/playlistStore";
+import { useRouter } from "next/navigation";
 import TrackRow from "@/components/TrackRow";
 
 interface PlaylistDetailProps {
@@ -11,9 +13,12 @@ interface PlaylistDetailProps {
 
 export default function PlaylistDetail({ playlist }: PlaylistDetailProps) {
   const { currentTrack, isPlaying, setQueue, togglePlay } = usePlayerStore();
+  const { deletePlaylist } = usePlaylistStore();
+  const router = useRouter();
   const isActive = playlist.tracks.some((t) => t.id === currentTrack?.id);
 
   const handlePlayAll = () => {
+    if (playlist.tracks.length === 0) return;
     if (isActive) {
       togglePlay();
     } else {
@@ -21,13 +26,21 @@ export default function PlaylistDetail({ playlist }: PlaylistDetailProps) {
     }
   };
 
+  const handleDelete = () => {
+    if (confirm(`Delete playlist "${playlist.name}"?`)) {
+      deletePlaylist(playlist.id);
+      router.push("/library");
+    }
+  };
+
   return (
     <div className="px-6 py-6">
-      {/* Play button */}
-      <div className="mb-6">
+      {/* Actions */}
+      <div className="flex items-center gap-4 mb-6">
         <button
           onClick={handlePlayAll}
-          className="w-14 h-14 bg-green-400 hover:bg-green-300 rounded-full flex items-center justify-center transition-all hover:scale-105 shadow-lg"
+          disabled={playlist.tracks.length === 0}
+          className="w-14 h-14 bg-green-400 hover:bg-green-300 rounded-full flex items-center justify-center transition-all hover:scale-105 shadow-lg disabled:opacity-40 disabled:cursor-not-allowed"
         >
           {isActive && isPlaying ? (
             <Pause size={24} fill="black" className="text-black" />
@@ -35,22 +48,40 @@ export default function PlaylistDetail({ playlist }: PlaylistDetailProps) {
             <Play size={24} fill="black" className="text-black ml-1" />
           )}
         </button>
+
+        <button
+          onClick={handleDelete}
+          className="flex items-center gap-2 text-zinc-400 hover:text-red-400 transition-colors text-sm px-3 py-2 rounded-lg hover:bg-red-400/10"
+          title="Delete playlist"
+        >
+          <Trash2 size={16} />
+          Delete Playlist
+        </button>
       </div>
 
-      {/* Track list header */}
-      <div className="flex items-center gap-4 px-4 pb-3 border-b border-zinc-800 text-zinc-400 text-xs uppercase tracking-wider mb-2">
-        <div className="w-8 text-center">#</div>
-        <div className="w-10" />
-        <div className="flex-1">Title</div>
-        <div className="hidden md:block w-40">Album</div>
-        <div className="w-10 text-right">Time</div>
-      </div>
+      {playlist.tracks.length === 0 ? (
+        <div className="text-center py-16">
+          <p className="text-zinc-400 text-sm">This playlist is empty.</p>
+          <p className="text-zinc-500 text-xs mt-1">Songs added here will appear in this playlist.</p>
+        </div>
+      ) : (
+        <>
+          {/* Track list header */}
+          <div className="flex items-center gap-4 px-4 pb-3 border-b border-zinc-800 text-zinc-400 text-xs uppercase tracking-wider mb-2">
+            <div className="w-8 text-center">#</div>
+            <div className="w-10" />
+            <div className="flex-1">Title</div>
+            <div className="hidden md:block w-40">Album</div>
+            <div className="w-10 text-right">Time</div>
+          </div>
 
-      <div className="space-y-1">
-        {playlist.tracks.map((track, i) => (
-          <TrackRow key={track.id} track={track} index={i} queue={playlist.tracks} />
-        ))}
-      </div>
+          <div className="space-y-1">
+            {playlist.tracks.map((track, i) => (
+              <TrackRow key={track.id} track={track} index={i} queue={playlist.tracks} />
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 }

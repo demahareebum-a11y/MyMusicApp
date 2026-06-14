@@ -1,14 +1,18 @@
+"use client";
+
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import { playlists } from "@/lib/data";
+import { use } from "react";
+import { usePlaylistStore } from "@/lib/playlistStore";
 import PlaylistDetail from "@/components/PlaylistDetail";
 
 interface PageProps {
   params: Promise<{ id: string }>;
 }
 
-export default async function PlaylistPage({ params }: PageProps) {
-  const { id } = await params;
+export default function PlaylistPage({ params }: PageProps) {
+  const { id } = use(params);
+  const { playlists } = usePlaylistStore();
   const playlist = playlists.find((p) => p.id === id);
 
   if (!playlist) return notFound();
@@ -23,7 +27,9 @@ export default async function PlaylistPage({ params }: PageProps) {
         <div>
           <p className="text-white text-xs uppercase font-semibold tracking-widest mb-1">Playlist</p>
           <h1 className="text-white text-4xl font-black mb-2">{playlist.name}</h1>
-          <p className="text-zinc-300 text-sm">{playlist.description}</p>
+          {playlist.description && (
+            <p className="text-zinc-300 text-sm">{playlist.description}</p>
+          )}
           <p className="text-zinc-400 text-xs mt-2">{playlist.tracks.length} songs</p>
         </div>
       </div>
@@ -32,8 +38,4 @@ export default async function PlaylistPage({ params }: PageProps) {
       <PlaylistDetail playlist={playlist} />
     </div>
   );
-}
-
-export function generateStaticParams() {
-  return playlists.map((p) => ({ id: p.id }));
 }
