@@ -76,6 +76,222 @@ export const mySongs: Track[] = [
       cover: "https://res.cloudinary.com/dnudhbjle/image/upload/v1781086631/idrees-abkar-banner_kmq9ly.jpg",
       audioUrl: "https://res.cloudinary.com/dnudhbjle/video/upload/v1781099661/001_-_Surah_Al-Fatiha_qrmukj.mp3",
     },
+    {
+      id: "idris-03",
+      title: "Surah Aal-E-Imran",
+      artist: "Idris Abkar",
+      album: "Quran Recitations",
+      duration: 44,   // 3 min 30 sec = 210
+      cover: "https://res.cloudinary.com/dnudhbjle/image/upload/v1781086631/idrees-abkar-banner_kmq9ly.jpg",
+      audioUrl: "https://res.cloudinary.com/dnudhbjle/video/upload/v1781099792/003_-_Surah_Aal-E-Imran_nismyp.mp3",
+    },
+    {
+      id: "idris-04",
+      title: "Surah An-Nisa",
+      artist: "Idris Abkar",
+      album: "Quran Recitations",
+      duration: 44,   // 3 min 30 sec = 210
+      cover: "https://res.cloudinary.com/dnudhbjle/image/upload/v1781086631/idrees-abkar-banner_kmq9ly.jpg",
+      audioUrl: "https://res.cloudinary.com/dnudhbjle/video/upload/v1781099791/004_-_Surah_An-Nisa_qetaeb.mp3",
+    },
+    {
+      id: "idris-05",
+      title: "Surah Al-Maeda",
+      artist: "Idris Abkar",
+      album: "Quran Recitations",
+      duration: 44,   // 3 min 30 sec = 210
+      cover: "https://res.cloudinary.com/dnudhbjle/image/upload/v1781086631/idrees-abkar-banner_kmq9ly.jpg",
+      audioUrl: "https://res.cloudinary.com/dnudhbjle/video/upload/v1781099785/005_-_Surah_Al-Maeda_zmdlob.mp3",
+    },
+    {
+      id: "idris-06",
+      title: "Surah Al-Anaam",
+      artist: "Idris Abkar",
+      album: "Quran Recitations",
+      duration: 44,   // 3 min 30 sec = 210
+      cover: "https://res.cloudinary.com/dnudhbjle/image/upload/v1781086631/idrees-abkar-banner_kmq9ly.jpg",
+      audioUrl: "https://res.cloudinary.com/dnudhbjle/video/upload/v1781099788/006_-_Surah_Al-Anaam_jy2cya.mp3",
+    },
+    {
+      id: "idris-07",
+      title: "Surah Al-Araf",
+      artist: "Idris Abkar",
+      album: "Quran Recitations",
+      duration: 44,   // 3 min 30 sec = 210
+      cover: "https://res.cloudinary.com/dnudhbjle/image/upload/v1781086631/idrees-abkar-banner_kmq9ly.jpg",
+      audioUrl: "https://res.cloudinary.com/dnudhbjle/video/upload/v1781099791/007_-_Surah_Al-Araf_lrlxo8.mp3",
+    },
+    {
+      id: "idris-08",
+      title: "Surah Al-Anfal",
+      artist: "Idris Abkar",
+      album: "Quran Recitations",
+      duration: 44,   // 3 min 30 sec = 210
+      cover: "https://res.cloudinary.com/dnudhbjle/image/upload/v1781086631/idrees-abkar-banner_kmq9ly.jpg",
+      audioUrl: "https://res.cloudinary.com/dnudhbjle/video/upload/v1781099769/008_-_Surah_Al-Anfal_fsqp7q.mp3",
+    },
+    {
+      id: "idris-09",
+      title: "Surah At_Tawbah",
+      artist: "Idris Abkar",
+      album: "Quran Recitations",
+      duration: 44,   // 3 min 30 sec = 210
+      cover: "https://res.cloudinary.com/dnudhbjle/image/upload/v1781086631/idrees-abkar-banner_kmq9ly.jpg",
+      audioUrl: "https://res.cloudinary.com/dnudhbjle/video/upload/v1781099787/009_-_Surah_at_Tawbah_kfiaxi.mp3",
+    },
+    {
+      id: "idris-10",
+      title: "Surah Al-Fatiha",
+      artist: "Idris Abkar",
+      album: "Quran Recitations",
+      duration: 44,   // 3 min 30 sec = 210
+      cover: "https://res.cloudinary.com/dnudhbjle/image/upload/v1781086631/idrees-abkar-banner_kmq9ly.jpg",
+      audioUrl: "https://res.cloudinary.com/dnudhbjle/video/upload/v1781099661/001_-_Surah_Al-Fatiha_qrmukj.mp3",
+    },
+    {
+      id: "idris-11",
+      title: "Surah Al-Fatiha",
+      artist: "Idris Abkar",
+      album: "Quran Recitations",
+      duration: 44,   // 3 min 30 sec = 210
+      cover: "https://res.cloudinary.com/dnudhbjle/image/upload/v1781086631/idrees-abkar-banner_kmq9ly.jpg",
+      audioUrl: "https://res.cloudinary.com/dnudhbjle/video/upload/v1781099661/001_-_Surah_Al-Fatiha_qrmukj.mp3",
+    },
+    {
+      id: "idris-12",
+      title: "Surah Al-Fatiha",
+      artist: "Idris Abkar",
+      album: "Quran Recitations",
+      duration: 44,   // 3 min 30 sec = 210
+      cover: "https://res.cloudinary.com/dnudhbjle/image/upload/v1781086631/idrees-abkar-banner_kmq9ly.jpg",
+      audioUrl: "https://res.cloudinary.com/dnudhbjle/video/upload/v1781099661/001_-_Surah_Al-Fatiha_qrmukj.mp3",
+    },
+    {
+      id: "idris-13",
+      title: "Surah Al-Fatiha",
+      artist: "Idris Abkar",
+      album: "Quran Recitations",
+      duration: 44,   // 3 min 30 sec = 210
+      cover: "https://res.cloudinary.com/dnudhbjle/image/upload/v1781086631/idrees-abkar-banner_kmq9ly.jpg",
+      audioUrl: "https://res.cloudinary.com/dnudhbjle/video/upload/v1781099661/001_-_Surah_Al-Fatiha_qrmukj.mp3",
+    },
+    {
+      id: "idris-14",
+      title: "Surah Al-Fatiha",
+      artist: "Idris Abkar",
+      album: "Quran Recitations",
+      duration: 44,   // 3 min 30 sec = 210
+      cover: "https://res.cloudinary.com/dnudhbjle/image/upload/v1781086631/idrees-abkar-banner_kmq9ly.jpg",
+      audioUrl: "https://res.cloudinary.com/dnudhbjle/video/upload/v1781099661/001_-_Surah_Al-Fatiha_qrmukj.mp3",
+    },
+    {
+      id: "idris-15",
+      title: "Surah Al-Fatiha",
+      artist: "Idris Abkar",
+      album: "Quran Recitations",
+      duration: 44,   // 3 min 30 sec = 210
+      cover: "https://res.cloudinary.com/dnudhbjle/image/upload/v1781086631/idrees-abkar-banner_kmq9ly.jpg",
+      audioUrl: "https://res.cloudinary.com/dnudhbjle/video/upload/v1781099661/001_-_Surah_Al-Fatiha_qrmukj.mp3",
+    },
+    {
+      id: "idris-16",
+      title: "Surah Al-Fatiha",
+      artist: "Idris Abkar",
+      album: "Quran Recitations",
+      duration: 44,   // 3 min 30 sec = 210
+      cover: "https://res.cloudinary.com/dnudhbjle/image/upload/v1781086631/idrees-abkar-banner_kmq9ly.jpg",
+      audioUrl: "https://res.cloudinary.com/dnudhbjle/video/upload/v1781099661/001_-_Surah_Al-Fatiha_qrmukj.mp3",
+    },
+    {
+      id: "idris-17",
+      title: "Surah Al-Fatiha",
+      artist: "Idris Abkar",
+      album: "Quran Recitations",
+      duration: 44,   // 3 min 30 sec = 210
+      cover: "https://res.cloudinary.com/dnudhbjle/image/upload/v1781086631/idrees-abkar-banner_kmq9ly.jpg",
+      audioUrl: "https://res.cloudinary.com/dnudhbjle/video/upload/v1781099661/001_-_Surah_Al-Fatiha_qrmukj.mp3",
+    },
+    {
+      id: "idris-18",
+      title: "Surah Al-Fatiha",
+      artist: "Idris Abkar",
+      album: "Quran Recitations",
+      duration: 44,   // 3 min 30 sec = 210
+      cover: "https://res.cloudinary.com/dnudhbjle/image/upload/v1781086631/idrees-abkar-banner_kmq9ly.jpg",
+      audioUrl: "https://res.cloudinary.com/dnudhbjle/video/upload/v1781099661/001_-_Surah_Al-Fatiha_qrmukj.mp3",
+    },
+    {
+      id: "idris-19",
+      title: "Surah Al-Fatiha",
+      artist: "Idris Abkar",
+      album: "Quran Recitations",
+      duration: 44,   // 3 min 30 sec = 210
+      cover: "https://res.cloudinary.com/dnudhbjle/image/upload/v1781086631/idrees-abkar-banner_kmq9ly.jpg",
+      audioUrl: "https://res.cloudinary.com/dnudhbjle/video/upload/v1781099661/001_-_Surah_Al-Fatiha_qrmukj.mp3",
+    },
+    {
+      id: "idris-20",
+      title: "Surah Al-Fatiha",
+      artist: "Idris Abkar",
+      album: "Quran Recitations",
+      duration: 44,   // 3 min 30 sec = 210
+      cover: "https://res.cloudinary.com/dnudhbjle/image/upload/v1781086631/idrees-abkar-banner_kmq9ly.jpg",
+      audioUrl: "https://res.cloudinary.com/dnudhbjle/video/upload/v1781099661/001_-_Surah_Al-Fatiha_qrmukj.mp3",
+    },
+    {
+      id: "idris-21",
+      title: "Surah Al-Fatiha",
+      artist: "Idris Abkar",
+      album: "Quran Recitations",
+      duration: 44,   // 3 min 30 sec = 210
+      cover: "https://res.cloudinary.com/dnudhbjle/image/upload/v1781086631/idrees-abkar-banner_kmq9ly.jpg",
+      audioUrl: "https://res.cloudinary.com/dnudhbjle/video/upload/v1781099661/001_-_Surah_Al-Fatiha_qrmukj.mp3",
+    },
+    {
+      id: "idris-22",
+      title: "Surah Al-Fatiha",
+      artist: "Idris Abkar",
+      album: "Quran Recitations",
+      duration: 44,   // 3 min 30 sec = 210
+      cover: "https://res.cloudinary.com/dnudhbjle/image/upload/v1781086631/idrees-abkar-banner_kmq9ly.jpg",
+      audioUrl: "https://res.cloudinary.com/dnudhbjle/video/upload/v1781099661/001_-_Surah_Al-Fatiha_qrmukj.mp3",
+    },
+    {
+      id: "idris-23",
+      title: "Surah Al-Fatiha",
+      artist: "Idris Abkar",
+      album: "Quran Recitations",
+      duration: 44,   // 3 min 30 sec = 210
+      cover: "https://res.cloudinary.com/dnudhbjle/image/upload/v1781086631/idrees-abkar-banner_kmq9ly.jpg",
+      audioUrl: "https://res.cloudinary.com/dnudhbjle/video/upload/v1781099661/001_-_Surah_Al-Fatiha_qrmukj.mp3",
+    },
+    {
+      id: "idris-24",
+      title: "Surah Al-Fatiha",
+      artist: "Idris Abkar",
+      album: "Quran Recitations",
+      duration: 44,   // 3 min 30 sec = 210
+      cover: "https://res.cloudinary.com/dnudhbjle/image/upload/v1781086631/idrees-abkar-banner_kmq9ly.jpg",
+      audioUrl: "https://res.cloudinary.com/dnudhbjle/video/upload/v1781099661/001_-_Surah_Al-Fatiha_qrmukj.mp3",
+    },
+    {
+      id: "idris-25",
+      title: "Surah Al-Fatiha",
+      artist: "Idris Abkar",
+      album: "Quran Recitations",
+      duration: 44,   // 3 min 30 sec = 210
+      cover: "https://res.cloudinary.com/dnudhbjle/image/upload/v1781086631/idrees-abkar-banner_kmq9ly.jpg",
+      audioUrl: "https://res.cloudinary.com/dnudhbjle/video/upload/v1781099661/001_-_Surah_Al-Fatiha_qrmukj.mp3",
+    },
+    {
+      id: "idris-26",
+      title: "Surah Al-Fatiha",
+      artist: "Idris Abkar",
+      album: "Quran Recitations",
+      duration: 44,   // 3 min 30 sec = 210
+      cover: "https://res.cloudinary.com/dnudhbjle/image/upload/v1781086631/idrees-abkar-banner_kmq9ly.jpg",
+      audioUrl: "https://res.cloudinary.com/dnudhbjle/video/upload/v1781099661/001_-_Surah_Al-Fatiha_qrmukj.mp3",
+    },
 ];
 
 // ============================================================
@@ -107,6 +323,6 @@ export const myPlaylists: Array<{
       name: "Idris Abkar Quran",
       description: "Full Quran Recitation by Idris Abkar",
       cover: "https://res.cloudinary.com/dnudhbjle/image/upload/v1781086631/idrees-abkar-banner_kmq9ly.jpg",
-      trackIds: ["idris-01"],  // mix of your songs + built-in
+      trackIds: ["idris-01", "idris-03", "idris-04", "idris-05", "idris-06", "idris-07", "idris-08", "idris-09"],  // mix of your songs + built-in
     },
 ];
