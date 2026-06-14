@@ -102,4 +102,11 @@ export const myPlaylists: Array<{
   // },
 
   // ── ADD YOUR PLAYLISTS BELOW ──────────────────────────────
+    {
+      id: "Idris Abkar",
+      name: "Full Quran",
+      description: "Full Idris Abkar quran - cloud",
+      cover: "https://res.cloudinary.com/dnudhbjle/image/upload/v1781086631/idrees-abkar-banner_kmq9ly.jpg",
+      trackIds: ["idris-01", "my-2", "1", "3"],  // mix of your songs + built-in
+    },
 ];
