@@ -72,7 +72,7 @@ export const mySongs: Track[] = [
       title: "Surah Al-Fatiha",
       artist: "Idris Abkar",
       album: "Quran Recitations",
-      duration: 210,   // 3 min 30 sec = 210
+      duration: 44,   // 3 min 30 sec = 210
       cover: "https://res.cloudinary.com/dnudhbjle/image/upload/v1781086631/idrees-abkar-banner_kmq9ly.jpg",
       audioUrl: "https://res.cloudinary.com/dnudhbjle/video/upload/v1781099661/001_-_Surah_Al-Fatiha_qrmukj.mp3",
     },
