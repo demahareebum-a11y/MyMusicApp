@@ -34,7 +34,7 @@ export default function PlaylistDetail({ playlist }: PlaylistDetailProps) {
   };
 
   return (
-    <div className="px-6 py-6">
+    <div className="px-4 sm:px-6 py-4 sm:py-6">
       {/* Actions */}
       <div className="flex items-center gap-4 mb-6">
         <button

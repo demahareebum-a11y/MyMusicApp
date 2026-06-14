@@ -19,9 +19,9 @@ export default function HomePage() {
   const recentTracks = allTracks.slice(0, 8);
 
   return (
-    <div className="px-6 py-8 pb-6">
+    <div className="px-4 sm:px-6 py-6 sm:py-8">
       {/* Hero Header */}
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex items-center justify-between mb-6 sm:mb-8">
         <div className="flex items-center gap-4">
           <Image
             src="https://res.cloudinary.com/dnudhbjle/image/upload/v1781090654/mubbas-logo_grhyr4.png"
@@ -31,13 +31,13 @@ export default function HomePage() {
             className="rounded-full"
           />
           <div>
-            <p className="text-zinc-400 text-sm">Good evening</p>
-            <h1 className="text-white text-3xl font-bold">Mubba&apos;s Music</h1>
+            <p className="text-zinc-400 text-xs sm:text-sm">Good evening</p>
+            <h1 className="text-white text-xl sm:text-3xl font-bold">Mubba&apos;s Music</h1>
           </div>
         </div>
         <button
           onClick={() => setModalOpen(true)}
-          className="flex items-center gap-2 bg-green-400 hover:bg-green-300 text-black text-sm font-bold px-4 py-2 rounded-full transition-colors"
+          className="flex items-center gap-1.5 sm:gap-2 bg-green-400 hover:bg-green-300 text-black text-xs sm:text-sm font-bold px-3 sm:px-4 py-1.5 sm:py-2 rounded-full transition-colors"
         >
           <Plus size={16} />
           New Playlist
@@ -47,12 +47,12 @@ export default function HomePage() {
       {/* Featured Playlists */}
       <section className="mb-10">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-white text-xl font-bold">Featured Playlists</h2>
+          <h2 className="text-white text-lg sm:text-xl font-bold">Featured Playlists</h2>
         </div>
         {featured.length === 0 ? (
           <p className="text-zinc-500 text-sm">No playlists yet. Create one!</p>
         ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3 sm:gap-4">
             {featured.map((pl) => (
               <PlaylistCard key={pl.id} playlist={pl} />
             ))}
@@ -63,7 +63,7 @@ export default function HomePage() {
       {/* Recent Tracks */}
       <section>
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-white text-xl font-bold">Popular Songs</h2>
+          <h2 className="text-white text-lg sm:text-xl font-bold">Popular Songs</h2>
         </div>
         <HomeTrackList tracks={recentTracks} />
       </section>

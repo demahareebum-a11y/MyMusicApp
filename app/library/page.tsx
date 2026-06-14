@@ -11,12 +11,12 @@ export default function LibraryPage() {
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
-    <div className="px-6 py-8">
+    <div className="px-4 sm:px-6 py-6 sm:py-8">
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-white text-2xl font-bold">Your Library</h1>
+        <h1 className="text-white text-xl sm:text-2xl font-bold">Your Library</h1>
         <button
           onClick={() => setModalOpen(true)}
-          className="flex items-center gap-2 bg-green-400 hover:bg-green-300 text-black text-sm font-bold px-4 py-2 rounded-full transition-colors"
+          className="flex items-center gap-1.5 sm:gap-2 bg-green-400 hover:bg-green-300 text-black text-xs sm:text-sm font-bold px-3 sm:px-4 py-1.5 sm:py-2 rounded-full transition-colors"
         >
           <Plus size={16} />
           New Playlist
@@ -38,7 +38,7 @@ export default function LibraryPage() {
           </button>
         </div>
       ) : (
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4">
           {playlists.map((pl) => (
             <PlaylistCard key={pl.id} playlist={pl} />
           ))}

@@ -25,7 +25,7 @@ export default function TrackRow({ track, index, queue }: TrackRowProps) {
 
   return (
     <div
-      className={`flex items-center gap-4 px-4 py-2 rounded-lg group cursor-pointer hover:bg-white/5 transition-colors ${
+      className={`flex items-center gap-2 sm:gap-4 px-2 sm:px-4 py-2 rounded-lg group cursor-pointer hover:bg-white/5 transition-colors ${
         isActive ? "bg-white/10" : ""
       }`}
       onClick={handlePlay}

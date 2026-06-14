@@ -22,8 +22,8 @@ export default function SearchPage() {
     : [];
 
   return (
-    <div className="px-6 py-8">
-      <h1 className="text-white text-2xl font-bold mb-6">Search</h1>
+    <div className="px-4 sm:px-6 py-6 sm:py-8">
+      <h1 className="text-white text-xl sm:text-2xl font-bold mb-5 sm:mb-6">Search</h1>
 
       {/* Search Input */}
       <div className="relative mb-8 max-w-lg">
@@ -61,7 +61,7 @@ export default function SearchPage() {
       ) : (
         <section>
           <h2 className="text-white text-lg font-bold mb-4">Browse Categories</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
             {categories.map((cat) => (
               <div
                 key={cat.id}
