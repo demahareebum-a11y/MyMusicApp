@@ -12,7 +12,7 @@ interface PlaylistCardProps {
 
 export default function PlaylistCard({ playlist }: PlaylistCardProps) {
   const { currentTrack, isPlaying, setQueue, togglePlay } = usePlayerStore();
-  const isActive = playlist.tracks.some((t) => t.id === currentTrack?.id);
+  const isActive = playlist.tracks.some((t) => t && t.id === currentTrack?.id);
 
   const handlePlayClick = (e: React.MouseEvent) => {
     e.preventDefault();

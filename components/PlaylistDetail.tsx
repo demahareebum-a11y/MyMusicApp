@@ -15,7 +15,7 @@ export default function PlaylistDetail({ playlist }: PlaylistDetailProps) {
   const { currentTrack, isPlaying, setQueue, togglePlay } = usePlayerStore();
   const { deletePlaylist } = usePlaylistStore();
   const router = useRouter();
-  const isActive = playlist.tracks.some((t) => t.id === currentTrack?.id);
+  const isActive = playlist.tracks.some((t) => t && t.id === currentTrack?.id);
 
   const handlePlayAll = () => {
     if (playlist.tracks.length === 0) return;

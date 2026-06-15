@@ -14,7 +14,7 @@ const myFullPlaylists: Playlist[] = myPlaylists.map((p) => ({
   name: p.name,
   description: p.description,
   cover: p.cover,
-  tracks: p.trackIds.map((id) => allTracks[id]).filter(Boolean),
+  tracks: p.trackIds.map((id) => allTracks[id]).filter((t): t is Track => t !== undefined),
 }));
 
 // Merge default + your playlists (your playlists come first)
@@ -65,9 +65,14 @@ export const usePlaylistStore = create<PlaylistStore>()(
         const userPlaylists = persisted.state.playlists.filter(
           (p: Playlist) => !initialPlaylists.find((ip) => ip.id === p.id)
         );
+        // Re-resolve tracks from fresh allTracks to avoid stale undefined entries
+        const mergedPlaylists = [...initialPlaylists, ...userPlaylists].map((p) => ({
+          ...p,
+          tracks: p.tracks.filter((t): t is Track => t !== undefined && t.id !== undefined),
+        }));
         return {
           ...current,
-          playlists: [...initialPlaylists, ...userPlaylists],
+          playlists: mergedPlaylists,
         };
       },
     }
