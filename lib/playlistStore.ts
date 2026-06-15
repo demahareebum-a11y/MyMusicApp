@@ -34,7 +34,7 @@ export const usePlaylistStore = create<PlaylistStore>()(
       playlists: initialPlaylists,
       allTracks,
 
-      createPlaylist: (name, description = "") => {
+      createPlaylist: (name: string, description: string = "") => {
         const newPlaylist: Playlist = {
           id: `pl-${Date.now()}`,
           name,
@@ -42,17 +42,17 @@ export const usePlaylistStore = create<PlaylistStore>()(
           cover: `https://picsum.photos/seed/${Date.now()}/300/300`,
           tracks: [],
         };
-        set((s) => ({ playlists: [...s.playlists, newPlaylist] }));
+        set((s: { playlists: Playlist[] }) => ({ playlists: [...s.playlists, newPlaylist] }));
         return newPlaylist;
       },
 
-      deletePlaylist: (id) => {
-        set((s) => ({ playlists: s.playlists.filter((p) => p.id !== id) }));
+      deletePlaylist: (id: string) => {
+        set((s: { playlists: Playlist[] }) => ({ playlists: s.playlists.filter((p: Playlist) => p.id !== id) }));
       },
 
-      renamePlaylist: (id, name) => {
-        set((s) => ({
-          playlists: s.playlists.map((p) => (p.id === id ? { ...p, name } : p)),
+      renamePlaylist: (id: string, name: string) => {
+        set((s: { playlists: Playlist[] }) => ({
+          playlists: s.playlists.map((p: Playlist) => (p.id === id ? { ...p, name } : p)),
         }));
       },
     }),
@@ -66,9 +66,9 @@ export const usePlaylistStore = create<PlaylistStore>()(
           (p: Playlist) => !initialPlaylists.find((ip) => ip.id === p.id)
         );
         // Re-resolve tracks from fresh allTracks to avoid stale undefined entries
-        const mergedPlaylists = [...initialPlaylists, ...userPlaylists].map((p) => ({
+        const mergedPlaylists = [...initialPlaylists, ...userPlaylists].map((p: Playlist) => ({
           ...p,
-          tracks: p.tracks.filter((t): t is Track => t !== undefined && t.id !== undefined),
+          tracks: p.tracks.filter((t: Track) => t !== undefined && t.id !== undefined),
         }));
         return {
           ...current,
