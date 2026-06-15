@@ -86,7 +86,13 @@ export default function PlayerBar() {
           </div>
 
           {/* Controls */}
-          <div className="flex items-center gap-3 shrink-0">
+          <div className="flex items-center gap-2 shrink-0">
+            <button
+              onClick={toggleShuffle}
+              className={`text-xs active:scale-95 ${shuffle ? 'text-green-400' : 'text-zinc-400 active:text-white'}`}
+            >
+              <Shuffle size={16} />
+            </button>
             <button onClick={prevTrack} className="text-zinc-400 active:text-white">
               <SkipBack size={20} fill="currentColor" />
             </button>
@@ -100,6 +106,12 @@ export default function PlayerBar() {
             </button>
             <button onClick={nextTrack} className="text-zinc-400 active:text-white">
               <SkipForward size={20} fill="currentColor" />
+            </button>
+            <button
+              onClick={toggleRepeat}
+              className={`text-xs active:scale-95 ${repeat !== 'off' ? 'text-green-400' : 'text-zinc-400 active:text-white'}`}
+            >
+              {repeat === 'one' ? <Repeat1 size={16} /> : <Repeat size={16} />}
             </button>
           </div>
         </div>

@@ -1,27 +1,23 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
-import { Plus } from "lucide-react";
 import { tracks as builtinTracks } from "@/lib/data";
 import { mySongs } from "@/lib/myMusic";
 import { usePlaylistStore } from "@/lib/playlistStore";
 import PlaylistCard from "@/components/PlaylistCard";
 import HomeTrackList from "@/components/HomeTrackList";
-import CreatePlaylistModal from "@/components/CreatePlaylistModal";
 
 const allTracks = [...mySongs, ...builtinTracks];
 
 export default function HomePage() {
   const { playlists } = usePlaylistStore();
-  const [modalOpen, setModalOpen] = useState(false);
   const featured = playlists.slice(0, 6);
   const recentTracks = allTracks.slice(0, 8);
 
   return (
     <div className="px-4 sm:px-6 py-6 sm:py-8">
       {/* Hero Header */}
-      <div className="flex items-center justify-between mb-6 sm:mb-8">
+      <div className="mb-6 sm:mb-8">
         <div className="flex items-center gap-4">
           <Image
             src="https://res.cloudinary.com/dnudhbjle/image/upload/v1781090654/mubbas-logo_grhyr4.png"
@@ -35,13 +31,6 @@ export default function HomePage() {
             <h1 className="text-white text-xl sm:text-3xl font-bold">Mubba&apos;s Music</h1>
           </div>
         </div>
-        <button
-          onClick={() => setModalOpen(true)}
-          className="flex items-center gap-1.5 sm:gap-2 bg-green-400 hover:bg-green-300 text-black text-xs sm:text-sm font-bold px-3 sm:px-4 py-1.5 sm:py-2 rounded-full transition-colors"
-        >
-          <Plus size={16} />
-          New Playlist
-        </button>
       </div>
 
       {/* Featured Playlists */}
@@ -67,8 +56,6 @@ export default function HomePage() {
         </div>
         <HomeTrackList tracks={recentTracks} />
       </section>
-
-      <CreatePlaylistModal open={modalOpen} onClose={() => setModalOpen(false)} />
     </div>
   );
 }

@@ -2,11 +2,9 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
-import { Home, Search, Library, Music2, Plus, Trash2 } from "lucide-react";
-import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { Home, Search, Library, Music2 } from "lucide-react";
 import { usePlaylistStore } from "@/lib/playlistStore";
-import CreatePlaylistModal from "@/components/CreatePlaylistModal";
 
 const navItems = [
   { label: "Home", href: "/", icon: Home },
@@ -16,23 +14,10 @@ const navItems = [
 
 export default function Sidebar() {
   const pathname = usePathname();
-  const router = useRouter();
-  const { playlists, deletePlaylist } = usePlaylistStore();
-  const [modalOpen, setModalOpen] = useState(false);
-  const [hoveredId, setHoveredId] = useState<string | null>(null);
-
-  const handleDelete = (e: React.MouseEvent, id: string) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (confirm("Delete this playlist?")) {
-      deletePlaylist(id);
-      if (pathname === `/playlist/${id}`) router.push("/library");
-    }
-  };
+  const { playlists } = usePlaylistStore();
 
   return (
-    <>
-      <aside className="hidden md:flex w-64 bg-black flex-col h-full shrink-0">
+    <aside className="hidden md:flex w-64 bg-black flex-col h-full shrink-0">
         {/* Logo */}
         <div className="p-6 pb-4">
           <Link href="/" className="flex items-center gap-3">
@@ -70,18 +55,11 @@ export default function Sidebar() {
         {/* Divider */}
         <div className="mx-6 my-4 border-t border-zinc-800" />
 
-        {/* Playlists Header */}
-        <div className="px-6 flex items-center justify-between mb-2">
+        {/* Playlists */}
+        <div className="px-6 mb-2">
           <span className="text-xs font-semibold text-zinc-400 uppercase tracking-widest">
             Playlists
           </span>
-          <button
-            onClick={() => setModalOpen(true)}
-            className="text-zinc-400 hover:text-white transition-colors"
-            title="Create playlist"
-          >
-            <Plus size={18} />
-          </button>
         </div>
 
         {/* Playlist list */}
@@ -90,38 +68,20 @@ export default function Sidebar() {
             <p className="text-zinc-500 text-xs px-3 py-2">No playlists yet</p>
           )}
           {playlists.map((pl) => (
-            <div
+            <Link
               key={pl.id}
-              className="relative"
-              onMouseEnter={() => setHoveredId(pl.id)}
-              onMouseLeave={() => setHoveredId(null)}
+              href={`/playlist/${pl.id}`}
+              className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors ${
+                pathname === `/playlist/${pl.id}`
+                  ? "text-white bg-zinc-800"
+                  : "text-zinc-400 hover:text-white hover:bg-zinc-800/50"
+              }`}
             >
-              <Link
-                href={`/playlist/${pl.id}`}
-                className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors pr-8 ${
-                  pathname === `/playlist/${pl.id}`
-                    ? "text-white bg-zinc-800"
-                    : "text-zinc-400 hover:text-white hover:bg-zinc-800/50"
-                }`}
-              >
-                <Music2 size={16} className="shrink-0" />
-                <span className="truncate">{pl.name}</span>
-              </Link>
-              {hoveredId === pl.id && (
-                <button
-                  onClick={(e) => handleDelete(e, pl.id)}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-red-400 transition-colors p-1"
-                  title="Delete playlist"
-                >
-                  <Trash2 size={14} />
-                </button>
-              )}
-            </div>
+              <Music2 size={16} className="shrink-0" />
+              <span className="truncate">{pl.name}</span>
+            </Link>
           ))}
         </div>
       </aside>
-
-      <CreatePlaylistModal open={modalOpen} onClose={() => setModalOpen(false)} />
-    </>
   );
 }

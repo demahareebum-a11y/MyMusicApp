@@ -1,10 +1,8 @@
 "use client";
 
-import { Play, Pause, Trash2 } from "lucide-react";
+import { Play, Pause } from "lucide-react";
 import { Playlist } from "@/lib/data";
 import { usePlayerStore } from "@/lib/store";
-import { usePlaylistStore } from "@/lib/playlistStore";
-import { useRouter } from "next/navigation";
 import TrackRow from "@/components/TrackRow";
 
 interface PlaylistDetailProps {
@@ -13,8 +11,6 @@ interface PlaylistDetailProps {
 
 export default function PlaylistDetail({ playlist }: PlaylistDetailProps) {
   const { currentTrack, isPlaying, setQueue, togglePlay } = usePlayerStore();
-  const { deletePlaylist } = usePlaylistStore();
-  const router = useRouter();
   const isActive = playlist.tracks.some((t) => t && t.id === currentTrack?.id);
 
   const handlePlayAll = () => {
@@ -26,16 +22,9 @@ export default function PlaylistDetail({ playlist }: PlaylistDetailProps) {
     }
   };
 
-  const handleDelete = () => {
-    if (confirm(`Delete playlist "${playlist.name}"?`)) {
-      deletePlaylist(playlist.id);
-      router.push("/library");
-    }
-  };
-
   return (
     <div className="px-4 sm:px-6 py-4 sm:py-6">
-      {/* Actions */}
+      {/* Play button */}
       <div className="flex items-center gap-4 mb-6">
         <button
           onClick={handlePlayAll}
@@ -47,15 +36,6 @@ export default function PlaylistDetail({ playlist }: PlaylistDetailProps) {
           ) : (
             <Play size={24} fill="black" className="text-black ml-1" />
           )}
-        </button>
-
-        <button
-          onClick={handleDelete}
-          className="flex items-center gap-2 text-zinc-400 hover:text-red-400 transition-colors text-sm px-3 py-2 rounded-lg hover:bg-red-400/10"
-          title="Delete playlist"
-        >
-          <Trash2 size={16} />
-          Delete Playlist
         </button>
       </div>
 
