@@ -56,6 +56,20 @@ export const usePlaylistStore = create<PlaylistStore>()(
         }));
       },
     }),
-    { name: "mubba-playlists" }
+    {
+      name: "mubba-playlists",
+      // Only persist user-created/modified playlists, NOT the initial ones
+      // so that adding songs to myMusic.ts always takes effect
+      merge: (persisted: any, current: any) => {
+        if (!persisted || !persisted.state) return current;
+        const userPlaylists = persisted.state.playlists.filter(
+          (p: Playlist) => !initialPlaylists.find((ip) => ip.id === p.id)
+        );
+        return {
+          ...current,
+          playlists: [...initialPlaylists, ...userPlaylists],
+        };
+      },
+    }
   )
 );

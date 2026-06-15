@@ -44,15 +44,12 @@ export default function PlayerBar() {
   };
 
   return (
-    // On mobile: sits above the BottomNav (mb-16), compact height
-    // On desktop: full player bar at bottom
-    <div className="bg-zinc-900 border-t border-zinc-800 shrink-0 mb-16 md:mb-0">
-
+    <>
       {/* ── MOBILE PLAYER (visible < md) ── */}
-      <div className="md:hidden px-3 py-2">
+      <div className="md:hidden bg-zinc-900 border-t border-zinc-800 shrink-0 fixed bottom-16 left-0 right-0 z-30">
         {/* Progress bar (thin strip at top) */}
         <div
-          className="w-full h-1 bg-zinc-700 rounded-full cursor-pointer mb-2"
+          className="w-full h-1 bg-zinc-700 rounded-full cursor-pointer"
           onClick={handleProgressClick}
         >
           <div
@@ -61,7 +58,7 @@ export default function PlayerBar() {
           />
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="px-3 py-2 flex items-center gap-3">
           {/* Cover */}
           {currentTrack ? (
             <div className="relative w-10 h-10 shrink-0">
@@ -109,7 +106,7 @@ export default function PlayerBar() {
       </div>
 
       {/* ── DESKTOP PLAYER (visible md+) ── */}
-      <div className="hidden md:flex h-20 items-center px-4 gap-4">
+      <div className="hidden md:flex h-20 bg-zinc-900 border-t border-zinc-800 items-center px-4 gap-4 shrink-0">
         {/* Track info */}
         <div className="flex items-center gap-3 w-64 min-w-0">
           {currentTrack ? (
@@ -219,6 +216,6 @@ export default function PlayerBar() {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
