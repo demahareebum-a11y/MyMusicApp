@@ -318,11 +318,6 @@ export const myPlaylists: Array<{
   // },
 
   // ── ADD YOUR PLAYLISTS BELOW ──────────────────────────────
-    {
-      id: "idris-pl01",
-      name: "Idris Abkar Quran",
-      description: "Full Quran Recitation by Idris Abkar",
-      cover: "https://res.cloudinary.com/dnudhbjle/image/upload/v1781086631/idrees-abkar-banner_kmq9ly.jpg",
-      trackIds: ["idris-01", "idris-03", "idris-04", "idris-05", "idris-06", "idris-07", "idris-08", "idris-09", "idris-10", "idris-11", "idris-12", "idris-13", "idris-14", "idris-15", "idris-16", "idris-17", "idris-18", "idris-19", "idris-20", "idris-21", "idris-22", "idris-23", "idris-24", "idris-25", "idris-26"],  // mix of your songs + built-in
-    },
+  // Playlists are now managed via Google Sheets!
+  // Edit the "Playlist" tab in your Google Sheet to add/modify playlists.
 ];
