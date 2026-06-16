@@ -3,6 +3,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { Track, Playlist, playlists as defaultPlaylists, tracks as builtinTracks } from "./data";
 import { mySongs, myPlaylists } from "./myMusic";
+import { fetchSongsFromSheet, fetchPlaylistsFromSheet } from "./sheetFetcher";
 
 // Merge built-in tracks + your cloud songs into one lookup map
 const allTracks: Record<string, Track> = {};
@@ -19,6 +20,36 @@ const myFullPlaylists: Playlist[] = myPlaylists.map((p) => ({
 
 // Merge default + your playlists (your playlists come first)
 const initialPlaylists: Playlist[] = [...myFullPlaylists, ...defaultPlaylists];
+
+// Store Google Sheet data (fetched at runtime)
+let sheetSongs: Track[] = [];
+let sheetPlaylists: Playlist[] = [];
+
+// Initialize from Google Sheet
+if (typeof window !== "undefined") {
+  fetchSongsFromSheet().then((songs) => {
+    sheetSongs = songs;
+    sheetPlaylists = fetchPlaylistsFromSheet(songs);
+    // Update store with new data
+    const merged = buildAllTracks();
+    usePlaylistStore.setState({ 
+      allTracks: merged, 
+      playlists: buildAllPlaylists(merged) 
+    });
+  });
+}
+
+function buildAllTracks(): Record<string, Track> {
+  const merged: Record<string, Track> = {};
+  [...builtinTracks, ...mySongs, ...sheetSongs].forEach((t) => {
+    merged[t.id] = t;
+  });
+  return merged;
+}
+
+function buildAllPlaylists(allTracksMap: Record<string, Track>): Playlist[] {
+  return [...myFullPlaylists, ...sheetPlaylists];
+}
 
 interface PlaylistStore {
   playlists: Playlist[];

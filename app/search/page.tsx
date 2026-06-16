@@ -1,19 +1,26 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Search } from "lucide-react";
 import { tracks as builtinTracks, categories } from "@/lib/data";
 import { mySongs } from "@/lib/myMusic";
 import TrackRow from "@/components/TrackRow";
-
-const tracks = [...mySongs, ...builtinTracks];
+import { fetchSongsFromSheet } from "@/lib/sheetFetcher";
+import { Track } from "@/lib/data";
 
 export default function SearchPage() {
   const [query, setQuery] = useState("");
+  const [allSongs, setAllSongs] = useState<Track[]>([]);
+
+  useEffect(() => {
+    fetchSongsFromSheet().then((sheetSongs) => {
+      setAllSongs([...mySongs, ...builtinTracks, ...sheetSongs]);
+    });
+  }, []);
 
   const results = query.trim()
-    ? tracks.filter(
+    ? allSongs.filter(
         (t) =>
           t.title.toLowerCase().includes(query.toLowerCase()) ||
           t.artist.toLowerCase().includes(query.toLowerCase()) ||

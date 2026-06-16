@@ -1,18 +1,29 @@
 "use client";
 
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import { tracks as builtinTracks } from "@/lib/data";
 import { mySongs } from "@/lib/myMusic";
 import { usePlaylistStore } from "@/lib/playlistStore";
 import PlaylistCard from "@/components/PlaylistCard";
 import HomeTrackList from "@/components/HomeTrackList";
-
-const allTracks = [...mySongs, ...builtinTracks];
+import { fetchSongsFromSheet } from "@/lib/sheetFetcher";
+import { Track } from "@/lib/data";
 
 export default function HomePage() {
-  const { playlists } = usePlaylistStore();
+  const { playlists, allTracks } = usePlaylistStore();
+  const [allSongs, setAllSongs] = useState<Track[]>([]);
+
+  useEffect(() => {
+    // Load songs from Google Sheet on mount
+    fetchSongsFromSheet().then((sheetSongs) => {
+      const merged = [...mySongs, ...builtinTracks, ...sheetSongs];
+      setAllSongs(merged);
+    });
+  }, []);
+
   const featured = playlists.slice(0, 6);
-  const recentTracks = allTracks.slice(0, 8);
+  const recentTracks = allSongs.slice(0, 8);
 
   return (
     <div className="px-4 sm:px-6 py-6 sm:py-8">
