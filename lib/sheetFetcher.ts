@@ -3,6 +3,9 @@ import { Track, Playlist } from "./data";
 const GOOGLE_SHEET_URL =
   "https://docs.google.com/spreadsheets/d/e/2PACX-1vTmfYCWoYBUanByA6uqOktJjxP8bqjltc6vTxox7IgG98PLLlt8YAGJMgMb8q9J7zGLYtVy89d3wzm1/pub?output=csv";
 
+const GOOGLE_SHEET_PLAYLIST_URL =
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vTmfYCWoYBUanByA6uqOktJjxP8bqjltc6vTxox7IgG98PLLlt8YAGJMgMb8q9J7zGLYtVy89d3wzm1/pub?gid=144435233&single=true&output=csv";
+
 export async function fetchSongsFromSheet(): Promise<Track[]> {
   try {
     const response = await fetch(GOOGLE_SHEET_URL, { cache: "no-store" });
@@ -32,30 +35,40 @@ export async function fetchSongsFromSheet(): Promise<Track[]> {
   }
 }
 
-export function fetchPlaylistsFromSheet(allSongs: Track[]): Playlist[] {
-  // Auto-generate playlists based on unique albums
-  const albums = new Map<string, Track[]>();
+export async function fetchPlaylistsFromSheet(allSongs: Track[]): Promise<Playlist[]> {
+  try {
+    const response = await fetch(GOOGLE_SHEET_PLAYLIST_URL, { cache: "no-store" });
+    const csvText = await response.text();
+    const lines = csvText.split("\n").filter((line) => line.trim());
 
-  allSongs.forEach((song) => {
-    if (!albums.has(song.album)) {
-      albums.set(song.album, []);
+    // Create a lookup map for all songs
+    const songMap = new Map<string, Track>();
+    allSongs.forEach((song) => songMap.set(song.id, song));
+
+    // Skip header row
+    const playlists: Playlist[] = [];
+    for (let i = 1; i < lines.length; i++) {
+      const values = parseCSVLine(lines[i]);
+      if (values.length >= 5 && values[0]) {
+        const trackIds = values[4].split(",").map((id) => id.trim()).filter(Boolean);
+        const tracks = trackIds
+          .map((id) => songMap.get(id))
+          .filter((t): t is Track => t !== undefined);
+
+        playlists.push({
+          id: values[0].trim(),
+          name: values[1].trim(),
+          description: values[2].trim(),
+          cover: values[3].trim(),
+          tracks,
+        });
+      }
     }
-    albums.get(song.album)!.push(song);
-  });
-
-  const playlists: Playlist[] = [];
-
-  albums.forEach((tracks, albumName) => {
-    playlists.push({
-      id: `album-${albumName.replace(/\s+/g, "-").toLowerCase()}`,
-      name: albumName,
-      description: `${tracks.length} songs`,
-      cover: tracks[0]?.cover || "",
-      tracks,
-    });
-  });
-
-  return playlists;
+    return playlists;
+  } catch (error) {
+    console.error("Failed to fetch playlists from Google Sheet:", error);
+    return [];
+  }
 }
 
 function parseCSVLine(line: string): string[] {

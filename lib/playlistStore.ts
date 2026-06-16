@@ -27,14 +27,14 @@ let sheetPlaylists: Playlist[] = [];
 
 // Initialize from Google Sheet
 if (typeof window !== "undefined") {
-  fetchSongsFromSheet().then((songs) => {
+  fetchSongsFromSheet().then(async (songs) => {
     sheetSongs = songs;
-    sheetPlaylists = fetchPlaylistsFromSheet(songs);
+    sheetPlaylists = await fetchPlaylistsFromSheet(songs);
     // Update store with new data
     const merged = buildAllTracks();
     usePlaylistStore.setState({ 
       allTracks: merged, 
-      playlists: buildAllPlaylists(merged) 
+      playlists: buildAllPlaylists() 
     });
   });
 }
@@ -47,7 +47,7 @@ function buildAllTracks(): Record<string, Track> {
   return merged;
 }
 
-function buildAllPlaylists(allTracksMap: Record<string, Track>): Playlist[] {
+function buildAllPlaylists(): Playlist[] {
   return [...myFullPlaylists, ...sheetPlaylists];
 }
 
